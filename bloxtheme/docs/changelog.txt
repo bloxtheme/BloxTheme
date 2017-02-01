@@ -1,0 +1,23 @@
+# Change Log
+All notable changes to this project will be documented in this file.
+
+## [v1.0.2]
+- Change version calculation in data-portability.php
+
+## [v1.0.1]
+- 100% GPL version 2.0
+- Delete scripts that no more in use
+- Remove Redactor
+- New WYSIWYG CKeditor
+- Change ace-editor.php
+
+## [v1.0.0]
+- google-fonts 			/ our own api for google fonts
+- default-design-settings.php 	/ delete margins, shadows and default Arial font
+
+## [Beta v1.0.1]
+- original license Headway Themes
+
+## [Beta v1.0.0]
+- all files changes from Headway Themes to Blox Theme
+- Small css changes and graphics (work in progress)
