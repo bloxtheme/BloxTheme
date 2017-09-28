@@ -27,13 +27,15 @@ All notable changes to this project will be documented in this file/
 - updated pep.js v2017
 - updated ace.js new Live CSS editor
 - updated jQuery
+- updated CKEditor v4.7
 
 - changed default css / need some more updates
 
 Next Release Blox Theme v1.0.4
 - WooCommerce 3.0 Blocks for all elements
 - Expand Ace.js (Live CSS editor) choose color, fonts, themes dark/light
-
+- new Parallex jQuery script, Script Stellar.js is outdated
+- new wysiwyg Block with inline editing
 
 ## [v1.0.2]
 - Change version calculation in data-portability.php
