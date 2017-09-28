@@ -2,17 +2,18 @@
 /**
  * Title         : Aqua Resizer
  * Description   : Resizes WordPress images on the fly
- * Version       : 1.2.0
+ * Version       : 1.2.2
  * Author        : Syamil MJ
  * Author URI    : http://aquagraphite.com
  * License       : WTFPL - http://sam.zoy.org/wtfpl/
  * Documentation : https://github.com/sy4mil/Aqua-Resizer/
  *
- * @param string  $url    - (required) must be uploaded using wp media uploader
- * @param int     $width  - (required)
- * @param int     $height - (optional)
- * @param bool    $crop   - (optional) default to soft crop
- * @param bool    $single - (optional) returns an array if false
+ * @param string  $url      - (required) must be uploaded using wp media uploader
+ * @param int     $width    - (required)
+ * @param int     $height   - (optional)
+ * @param bool    $crop     - (optional) default to soft crop
+ * @param bool    $single   - (optional) returns an array if false
+ * @param bool    $upscale  - (optional) resizes smaller images
  * @uses  wp_upload_dir()
  * @uses  image_resize_dimensions()
  * @uses  wp_get_image_editor()
@@ -63,19 +64,19 @@ if(!class_exists('BloxImageResize')) {
             $upload_info = wp_upload_dir();
             $upload_dir = $upload_info['basedir'];
             $upload_url = $upload_info['baseurl'];
-            
+
             $http_prefix = "http://";
             $https_prefix = "https://";
-            
-            /* if the $url scheme differs from $upload_url scheme, make them match 
+
+            /* if the $url scheme differs from $upload_url scheme, make them match
                if the schemes differe, images don't show up. */
             if(!strncmp($url,$https_prefix,strlen($https_prefix))){ //if url begins with https:// make $upload_url begin with https:// as well
                 $upload_url = str_replace($http_prefix,$https_prefix,$upload_url);
             }
             elseif(!strncmp($url,$http_prefix,strlen($http_prefix))){ //if url begins with http:// make $upload_url begin with http:// as well
-                $upload_url = str_replace($https_prefix,$http_prefix,$upload_url);      
+                $upload_url = str_replace($https_prefix,$http_prefix,$upload_url);
             }
-            
+
 
             // Check if $img_url is local.
             if ( false === strpos( $url, $upload_url ) ) return new WP_Error('aqua_resizer_image_not_local', __('Error: Image not local', 'blox'), __CLASS__);

@@ -13,9 +13,9 @@
 	<input type="hidden" value="<?php echo wp_create_nonce('blox-admin-nonce'); ?>" name="blox-admin-nonce" id="blox-admin-nonce" />
 
 	<div class="big-tabs-container">
-	
+
 		<div class="big-tab" id="tab-general-content">
-			
+
 			<?php
 			if ( is_main_site() ) {
 			?>
@@ -30,7 +30,7 @@
 
 			}
 
-			$form = array(	
+			$form = array(
 				array(
 					'id' => 'favicon',
 					'size' => 'large',
@@ -49,14 +49,14 @@
 					'value' => BloxOption::get('feed-url')
 				)
 			);
-			
+
 			BloxAdminInputs::generate($form);
 			?>
 
 			<h3 class="title title-hr">Admin Preferences</h3>
-		
+
 			<?php
-			$form = array(	
+			$form = array(
 				array(
 					'id' => 'menu-setup',
 					'type' => 'radio',
@@ -67,12 +67,12 @@
 							'value' => 'getting-started',
 							'label' => 'Getting Started'
 						),
-					
+
 						array(
 							'value' => 'visual-editor',
 							'label' => 'Visual Editor'
 						),
-					
+
 						array(
 							'value' => 'options',
 							'label' => 'Options'
@@ -81,14 +81,14 @@
 					'description' => 'Select which admin page you would like to be directed to when you click on "Blox" in the WordPress Admin.'
 				)
 			);
-		
+
 			BloxAdminInputs::generate($form);
 			?>
 
 			<h3 class="title title-hr">Affiliate Promotion</h3>
-					
+
 			<?php
-			$form = array(	
+			$form = array(
 				array(
 					'id' => 'affiliate-link',
 					'size' => 'large',
@@ -100,15 +100,15 @@
 							<br /><br /><strong>Not an affiliate?</strong>  If you\'re interested in the Blox Affiliate program, you may <a href="http://bloxtheme.com/affiliates" target="_blank">apply here</a>. Once your application is approved you can log in and grab your affiliate link.'
 				)
 			);
- 
+
 			BloxAdminInputs::generate($form);
 			?>
-		
+
 		</div><!-- #tab-general-content -->
-	
-		
+
+
 		<div class="big-tab" id="tab-seo-content">
-										
+
 			<?php
 			if ( BloxSEO::is_disabled() ) {
 
@@ -129,9 +129,9 @@
 				}
 
 			} else {
-			?>	
-				
-				<h3 class="title" id="seo-templates-title">SEO Templates</h3>	
+			?>
+
+				<h3 class="title" id="seo-templates-title">SEO Templates</h3>
 
 				<div id="seo-templates">
 					<div id="seo-templates-hidden-inputs">
@@ -207,7 +207,7 @@
 					<div id="seo-templates-inputs">
 
 						<?php
-						$form = array(	
+						$form = array(
 							array(
 								'id' => 'title',
 								'type' => 'text',
@@ -246,7 +246,7 @@
 
 						<div id="seo-templates-advanced-options">
 							<?php
-							$form = array(	
+							$form = array(
 								array(
 									'type' => 'checkbox',
 									'label' => 'Page Indexing',
@@ -333,12 +333,12 @@
 					</div><!-- #seo-templates-inputs -->
 				</div><!-- #seo-templates-content -->
 
-				<div id="seo-description" class="alert alert-yellow"><p>Unfamiliar with <em>Search Engine Optimization</em>?  <a href="http://www.seomoz.org/beginners-guide-to-seo/" target="_blank">Learn More &raquo;</a></p></div>			
+				<div id="seo-description" class="alert alert-yellow"><p>Unfamiliar with <em>Search Engine Optimization</em>?  <a href="http://www.seomoz.org/beginners-guide-to-seo/" target="_blank">Learn More &raquo;</a></p></div>
 
-				<h3 class="title title-hr">Content <code>nofollow</code> Links</h3>	
+				<h3 class="title title-hr">Content <code>nofollow</code> Links</h3>
 
 				<?php
-				$form = array(	
+				$form = array(
 					array(
 						'type' => 'checkbox',
 						'label' => 'Comment Authors\' URL',
@@ -355,18 +355,18 @@
 
 				BloxAdminInputs::generate($form);
 				?>
-			
-			<?php	
+
+			<?php
 			}
 			?>
-				
+
 		</div><!-- #tab-seo -->
-	
-		
+
+
 		<div class="big-tab" id="tab-scripts-content">
-			
+
 			<?php
-			$form = array(	
+			$form = array(
 				array(
 					'id' => 'header-scripts',
 					'type' => 'paragraph',
@@ -377,7 +377,7 @@
 					'allow-tabbing' => true,
 					'value' => BloxOption::get('header-scripts')
 				),
-				
+
 				array(
 					'id' => 'footer-scripts',
 					'type' => 'paragraph',
@@ -392,14 +392,14 @@
 
 			BloxAdminInputs::generate($form);
 			?>
-			
+
 		</div><!-- #tab-scripts-content -->
-	
-	
+
+
 		<div class="big-tab" id="tab-visual-editor-content">
-					
+
 			<?php
-			$form = array(	
+			$form = array(
 				array(
 					'type' => 'checkbox',
 					'label' => 'Tooltips',
@@ -413,19 +413,19 @@
 					'description' => 'If you ever feel that the tooltips are too invasive in the visual editor, you can disable them here.  Tooltips are the black speech bubbles that appear to assist you when you are not sure what an option is or how it works.'
 				)
 			);
-		
+
 			BloxAdminInputs::generate($form);
 			?>
-			
+
 		</div>
-		
-	
+
+
 		<div class="big-tab" id="tab-advanced-content">
-			
+
 			<h3 class="title">Caching &amp; Compression</h3>
-			
+
 			<?php
-			$form = array(	
+			$form = array(
 				array(
 					'type' => 'checkbox',
 					'label' => 'Asset Caching',
@@ -438,7 +438,7 @@
 					),
 					'description' => 'By default, Blox will attempt to cache all CSS and JavaScript that it generates.  However, there may be rare circumstances where disabling the cache will help with certain issues.<br /><br /><em><strong>Important:</strong> Disabling the Blox cache will cause an <strong>increase in page load times</strong> and <strong>increase the strain your web server</strong> will undergo on every page load.'
 				),
-				
+
 				array(
 					'type' => 'checkbox',
 					'label' => 'Dependency Query Variables',
@@ -452,14 +452,14 @@
 					'description' => 'To leverage browser caching, Blox can tell WordPress to not put query variables on static assets such as CSS and JavaScript files.'
 				)
 			);
-		
+
 			BloxAdminInputs::generate($form);
 			?>
-						
+
 			<h3 class="title title-hr">Admin</h3>
-			
+
 			<?php
-			$form = array(	
+			$form = array(
 				array(
 					'type' => 'checkbox',
 					'label' => 'Version Number',
@@ -470,9 +470,9 @@
 							'checked' => BloxOption::get('hide-menu-version-number', false, true)
 						)
 					),
-					'description' => 'Check this if you wish to have the Menu say "Blox" instead of "Blox ' .BLOX_VERSION . '"'
+					'description' => 'Check this if you wish to have the Menu say "Blox" instead of "Blox ' .HEADWAY_VERSION . '"'
 				),
-				
+
 				array(
 					'type' => 'checkbox',
 					'label' => 'Update Notices',
@@ -485,7 +485,7 @@
 					),
 					'description' => 'If you wish to hide the notices that appear when an update is available for Blox, check this.'
 				),
-				
+
 				array(
 					'type' => 'checkbox',
 					'label' => 'Editor Style',
@@ -499,16 +499,16 @@
 					'description' => 'By default, Blox will take any settings in the Design Editor and add them to <a href="http://codex.wordpress.org/TinyMCE" target="_blank">WordPress\' TinyMCE editor</a> style.  Use this option to prevent that.'
 				)
 			);
-		
+
 			BloxAdminInputs::generate($form);
 			?>
-			
+
 			<h3 class="title title-hr">Debugging</h3>
-			
-			<div class="alert alert-red"><p>The following option should only be checked if a member of the Blox Theme team asks you to do so.</p></div>
-			
+
+			<div class="alert alert-red"><p>The following option should only be checked if a member of the Blox Themes team asks you to do so.</p></div>
+
 			<?php
-			$form = array(	
+			$form = array(
 				array(
 					'type' => 'checkbox',
 					'label' => 'Debug Mode',
@@ -519,16 +519,16 @@
 							'checked' => BloxOption::get('debug-mode', false, false)
 						)
 					),
-					'description' => 'Having Debug Mode enabled will allow the Blox Theme team to access the Visual Editor for support purposes, but <strong>will not allow changes to be saved<strong>.'
+					'description' => 'Having Debug Mode enabled will allow the Blox Themes team to access the Visual Editor for support purposes, but <strong>will not allow changes to be saved<strong>.'
 				)
 			);
-		
+
 			BloxAdminInputs::generate($form);
 			?>
-			
+
 		</div>
-		
-		
+
+
 	</div>
 
 	<div class="hr hr-submit" style="display: none;"></div>
@@ -536,5 +536,5 @@
 	<p class="submit" style="display: none;">
 		<input type="submit" name="blox-submit" value="Save Changes" class="button-primary blox-save" />
 	</p>
-	
+
 </form>

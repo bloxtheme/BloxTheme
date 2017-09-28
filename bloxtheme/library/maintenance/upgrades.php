@@ -2,15 +2,8 @@
 class BloxMaintenance {
 
 	public static $available_upgrades = array(
-		'3.2.3',
-		'3.4',
-		'3.6',
-		'3.6.1',
-		'3.7',
-		'3.7.1',
-		'3.8',
-		'3.8.2',
-		'3.8.6'
+		'1.0.1',
+		'1.0.2'
 	);
 
 	/**

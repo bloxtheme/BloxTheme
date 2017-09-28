@@ -1,8 +1,264 @@
 /*
- *	Tabby jQuery plugin version 0.12
+ *	Tabby jQuery plugin version 0.13.0
  *
- *	Ted Devito - http://teddevito.com/demos/textarea.html
+ *	Ted Devito - http://web.archive.org/web/20110716201510/http://teddevito.com/demos/textarea.html
  *
- *	Copyright (c) 2009 Ted Devito
+ *  Now mirrored at https://github.com/alanhogan/Tabby
+ *
+ *	Copyright (c) 2009 Ted Devito. Updated by Alan Hogan.
+ *
+ *  LICENSE (BSD 3-Clause):
+ *
+ *	Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following
+ *	conditions are met:
+ *
+ *		1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+ *		2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer
+ *			in the documentation and/or other materials provided with the distribution.
+ *		3. The name of the author may not be used to endorse or promote products derived from this software without specific prior written
+ *			permission.
+ *
+ *	THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ *	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE
+ *	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ *	PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ *	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ *	OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
  */
- (function(d){d.fn.tabby=function(f){var g=d.extend({},d.fn.tabby.defaults,f);var h=d.fn.tabby.pressed;return this.each(function(){$this=d(this);var i=d.meta?d.extend({},g,$this.data()):g;$this.bind("keydown",function(k){var j=d.fn.tabby.catch_kc(k);if(16==j){h.shft=true}if(17==j){h.ctrl=true;setTimeout("$.fn.tabby.pressed.ctrl = false;",1000)}if(18==j){h.alt=true;setTimeout("$.fn.tabby.pressed.alt = false;",1000)}if(9==j&&!h.ctrl&&!h.alt){k.preventDefault;h.last=j;setTimeout("$.fn.tabby.pressed.last = null;",0);e(d(k.target).get(0),h.shft,i);return false}}).bind("keyup",function(j){if(16==d.fn.tabby.catch_kc(j)){h.shft=false}}).bind("blur",function(j){if(9==h.last){d(j.target).one("focus",function(k){h.last=null}).get(0).focus()}})})};d.fn.tabby.catch_kc=function(f){return f.keyCode?f.keyCode:f.charCode?f.charCode:f.which};d.fn.tabby.pressed={shft:false,ctrl:false,alt:false,last:null};function b(f){if(window.console&&window.console.log){window.console.log("textarea count: "+f.size())}}function e(i,h,g){var f=i.scrollTop;if(i.setSelectionRange){a(i,h,g)}else{if(document.selection){c(i,h,g)}}i.scrollTop=f}d.fn.tabby.defaults={tabString:String.fromCharCode(9)};function a(j,f,u){var t=j.selectionStart;var r=j.selectionEnd;if(t==r){if(f){if(t-u.tabString==j.value.substring(t-u.tabString.length,t)){j.value=j.value.substring(0,t-u.tabString.length)+j.value.substring(t);j.focus();j.setSelectionRange(t-u.tabString.length,t-u.tabString.length)}else{if(t-u.tabString==j.value.substring(t,t+u.tabString.length)){j.value=j.value.substring(0,t)+j.value.substring(t+u.tabString.length);j.focus();j.setSelectionRange(t,t)}}}else{j.value=j.value.substring(0,t)+u.tabString+j.value.substring(t);j.focus();j.setSelectionRange(t+u.tabString.length,t+u.tabString.length)}}else{while(t<j.value.length&&j.value.charAt(t).match(/[ \t]/)){t++}var v=j.value.split("\n");var s=new Array();var l=0;var h=0;var g=false;for(var n in v){h=l+v[n].length;s.push({start:l,end:h,selected:(l<=t&&h>t)||(h>=r&&l<r)||(l>t&&h<r)});l=h+1}var k=0;for(var n in s){if(s[n].selected){var q=s[n].start+k;if(f&&u.tabString==j.value.substring(q,q+u.tabString.length)){j.value=j.value.substring(0,q)+j.value.substring(q+u.tabString.length);k-=u.tabString.length}else{if(!f){j.value=j.value.substring(0,q)+u.tabString+j.value.substring(q);k+=u.tabString.length}}}}j.focus();var p=t+((k>0)?u.tabString.length:(k<0)?-u.tabString.length:0);var m=r+k;j.setSelectionRange(p,m)}}function c(q,w,f){var p=document.selection.createRange();if(q==p.parentElement()){if(""==p.text){if(w){var l=p.getBookmark();p.moveStart("character",-f.tabString.length);if(f.tabString==p.text){p.text=""}else{p.moveToBookmark(l);p.moveEnd("character",f.tabString.length);if(f.tabString==p.text){p.text=""}}p.collapse(true);p.select()}else{p.text=f.tabString;p.collapse(false);p.select()}}else{var k=p.text;var n=k.length;var u=k.split("\r\n");var z=document.body.createTextRange();z.moveToElementText(q);z.setEndPoint("EndToStart",p);var m=z.text;var x=m.split("\r\n");var r=m.length;var y=document.body.createTextRange();y.moveToElementText(q);y.setEndPoint("StartToEnd",p);var v=y.text;var g=document.body.createTextRange();g.moveToElementText(q);g.setEndPoint("StartToEnd",z);var s=g.text;var h=d(q).html();d("#r3").text(r+" + "+n+" + "+v.length+" = "+h.length);if((r+s.length)<h.length){x.push("");r+=2;if(w&&f.tabString==u[0].substring(0,f.tabString.length)){u[0]=u[0].substring(f.tabString.length)}else{if(!w){u[0]=f.tabString+u[0]}}}else{if(w&&f.tabString==x[x.length-1].substring(0,f.tabString.length)){x[x.length-1]=x[x.length-1].substring(f.tabString.length)}else{if(!w){x[x.length-1]=f.tabString+x[x.length-1]}}}for(var t=1;t<u.length;t++){if(w&&f.tabString==u[t].substring(0,f.tabString.length)){u[t]=u[t].substring(f.tabString.length)}else{if(!w){u[t]=f.tabString+u[t]}}}if(1==x.length&&0==r){if(w&&f.tabString==u[0].substring(0,f.tabString.length)){u[0]=u[0].substring(f.tabString.length)}else{if(!w){u[0]=f.tabString+u[0]}}}if((r+n+v.length)<h.length){u.push("");n+=2}z.text=x.join("\r\n");p.text=u.join("\r\n");var j=document.body.createTextRange();j.moveToElementText(q);if(0<r){j.setEndPoint("StartToEnd",z)}else{j.setEndPoint("StartToStart",z)}j.setEndPoint("EndToEnd",p);j.select()}}}})(jQuery);
+
+// create closure
+
+(function($) {
+	// plugin definition
+
+	$.fn.tabby = function(options) {
+		// build main options before element iteration
+		var opts = $.extend({}, $.fn.tabby.defaults, options);
+		var pressed = $.fn.tabby.pressed;
+
+		// iterate and reformat each matched element
+		return this.each(function() {
+			var $this = $(this);
+
+			// build element specific options
+			var options = $.meta ? $.extend({}, opts, $this.data()) : opts;
+
+			$this.bind('keydown',function (e) {
+				var kc = $.fn.tabby.catch_kc(e);
+				if (16 === kc) pressed.shft = true;
+				/*
+				because both CTRL+TAB and ALT+TAB default to an event (changing tab/window) that
+				will prevent js from capturing the keyup event, we'll set a timer on releasing them.
+				*/
+				if (17 === kc) {pressed.ctrl = true;	setTimeout(function(){$.fn.tabby.pressed.ctrl = false;},1000);}
+				if (18 === kc) {pressed.alt = true; 	setTimeout(function(){$.fn.tabby.pressed.alt = false;},1000);}
+
+				if (9 === kc && !pressed.ctrl && !pressed.alt) {
+					e.preventDefault();
+					pressed.last = kc;	setTimeout(function(){$.fn.tabby.pressed.last = null;},0);
+					process_keypress ($(e.target).get(0), pressed.shft, options);
+					return false;
+				}
+
+			}).bind('keyup',function (e) {
+				if (16 === $.fn.tabby.catch_kc(e)) pressed.shft = false;
+			}).bind('blur',function (e) { // workaround for Opera -- http://www.webdeveloper.com/forum/showthread.php?p=806588
+				if (9 === pressed.last) $(e.target).one('focus',function () {pressed.last = null;}).get(0).focus();
+			});
+
+		});
+	};
+
+	// define and expose any extra methods
+	$.fn.tabby.catch_kc = function(e) { return e.keyCode ? e.keyCode : e.charCode ? e.charCode : e.which; };
+	$.fn.tabby.pressed = {shft : false, ctrl : false, alt : false, last: null};
+
+	function process_keypress (o,shft,options) {
+		var scrollTo = o.scrollTop;
+		//var tabString = String.fromCharCode(9);
+
+		// gecko; o.setSelectionRange is only available when the text box has focus
+		if (o.setSelectionRange) gecko_tab (o, shft, options);
+
+		// ie; document.selection is always available
+		else if (document.selection) ie_tab (o, shft, options);
+
+		o.scrollTop = scrollTo;
+	}
+
+	// plugin defaults
+	$.fn.tabby.defaults = {tabString : String.fromCharCode(9)};
+
+	function gecko_tab (o, shft, options) {
+		var ss = o.selectionStart;
+		var es = o.selectionEnd;
+
+		// when there's no selection and we're just working with the caret, we'll add/remove the tabs at the caret, providing more control
+		if(ss === es) {
+			// SHIFT+TAB
+			if (shft) {
+				// check to the left of the caret first
+				if (ss-options.tabString === o.value.substring(ss-options.tabString.length, ss)) {
+					o.value = o.value.substring(0, ss-options.tabString.length) + o.value.substring(ss); // put it back together omitting one character to the left
+					o.focus();
+					o.setSelectionRange(ss - options.tabString.length, ss - options.tabString.length);
+				}
+				// then check to the right of the caret
+				else if (ss-options.tabString === o.value.substring(ss, ss + options.tabString.length)) {
+					o.value = o.value.substring(0, ss) + o.value.substring(ss + options.tabString.length); // put it back together omitting one character to the right
+					o.focus();
+					o.setSelectionRange(ss,ss);
+				}
+			}
+			// TAB
+			else {
+				o.value = o.value.substring(0, ss) + options.tabString + o.value.substring(ss);
+				o.focus();
+				o.setSelectionRange(ss + options.tabString.length, ss + options.tabString.length);
+			}
+		}
+		// selections will always add/remove tabs from the start of the line
+		else {
+			while (ss < o.value.length && o.value.charAt(ss).match(/[ \t]/)) ss++;
+			// split the textarea up into lines and figure out which lines are included in the selection
+			var lines = o.value.split("\n");
+			var indices = [];
+			var sl = 0; // start of the line
+			var el = 0; // end of the line
+			var i = 0;
+			for (i in lines) {
+				el = sl + lines[i].length;
+				indices.push({start: sl, end: el, selected: (sl <= ss && el > ss) || (el >= es && sl < es) || (sl > ss && el < es)});
+				sl = el + 1;// for "\n"
+			}
+
+			// walk through the array of lines (indices) and add tabs where appropriate
+			var modifier = 0;
+			for (i in indices) {
+				if (indices[i].selected) {
+					var pos = indices[i].start + modifier; // adjust for tabs already inserted/removed
+					// SHIFT+TAB
+					if (shft && options.tabString === o.value.substring(pos,pos+options.tabString.length)) { // only SHIFT+TAB if there's a tab at the start of the line
+						o.value = o.value.substring(0,pos) + o.value.substring(pos + options.tabString.length); // omit the tabstring to the right
+						modifier -= options.tabString.length;
+					}
+					// TAB
+					else if (!shft) {
+						o.value = o.value.substring(0,pos) + options.tabString + o.value.substring(pos); // insert the tabstring
+						modifier += options.tabString.length;
+					}
+				}
+			}
+			o.focus();
+			var ns = ss + ((modifier > 0) ? options.tabString.length : (modifier < 0) ? -options.tabString.length : 0);
+			var ne = es + modifier;
+			o.setSelectionRange(ns,ne);
+		}
+	}
+
+	function ie_tab (o, shft, options) {
+		var range = document.selection.createRange();
+
+		if (o === range.parentElement()) {
+			// when there's no selection and we're just working with the caret, we'll add/remove the tabs at the caret, providing more control
+			if ('' === range.text) {
+				// SHIFT+TAB
+				if (shft) {
+					var bookmark = range.getBookmark();
+					//first try to the left by moving opening up our empty range to the left
+					range.moveStart('character', -options.tabString.length);
+					if (options.tabString === range.text) {
+						range.text = '';
+					} else {
+						// if that didn't work then reset the range and try opening it to the right
+						range.moveToBookmark(bookmark);
+						range.moveEnd('character', options.tabString.length);
+						if (options.tabString === range.text)
+							range.text = '';
+					}
+					// move the pointer to the start of them empty range and select it
+					range.collapse(true);
+					range.select();
+				}
+
+				else {
+					// very simple here. just insert the tab into the range and put the pointer at the end
+					range.text = options.tabString;
+					range.collapse(false);
+					range.select();
+				}
+			}
+			// selections will always add/remove tabs from the start of the line
+			else {
+
+				var selection_text = range.text;
+				var selection_len = selection_text.length;
+				var selection_arr = selection_text.split("\r\n");
+
+				var before_range = document.body.createTextRange();
+				before_range.moveToElementText(o);
+				before_range.setEndPoint("EndToStart", range);
+				var before_text = before_range.text;
+				var before_arr = before_text.split("\r\n");
+				var before_len = before_text.length; // - before_arr.length + 1;
+
+				var after_range = document.body.createTextRange();
+				after_range.moveToElementText(o);
+				after_range.setEndPoint("StartToEnd", range);
+				var after_text = after_range.text; // we can accurately calculate distance to the end because we're not worried about MSIE trimming a \r\n
+
+				var end_range = document.body.createTextRange();
+				end_range.moveToElementText(o);
+				end_range.setEndPoint("StartToEnd", before_range);
+				var end_text = end_range.text; // we can accurately calculate distance to the end because we're not worried about MSIE trimming a \r\n
+
+				var check_html = $(o).html();
+				$("#r3").text(before_len + " + " + selection_len + " + " + after_text.length + " = " + check_html.length);
+				if((before_len + end_text.length) < check_html.length) {
+					before_arr.push("");
+					before_len += 2; // for the \r\n that was trimmed
+					if (shft && options.tabString === selection_arr[0].substring(0,options.tabString.length))
+						selection_arr[0] = selection_arr[0].substring(options.tabString.length);
+					else if (!shft) selection_arr[0] = options.tabString + selection_arr[0];
+				} else {
+					if (shft && options.tabString === before_arr[before_arr.length-1].substring(0,options.tabString.length))
+						before_arr[before_arr.length-1] = before_arr[before_arr.length-1].substring(options.tabString.length);
+					else if (!shft) before_arr[before_arr.length-1] = options.tabString + before_arr[before_arr.length-1];
+				}
+
+				for (var i = 1; i < selection_arr.length; i++) {
+					if (shft && options.tabString === selection_arr[i].substring(0,options.tabString.length))
+						selection_arr[i] = selection_arr[i].substring(options.tabString.length);
+					else if (!shft) selection_arr[i] = options.tabString + selection_arr[i];
+				}
+
+				if (1 === before_arr.length && 0 === before_len) {
+					if (shft && options.tabString === selection_arr[0].substring(0,options.tabString.length))
+						selection_arr[0] = selection_arr[0].substring(options.tabString.length);
+					else if (!shft) selection_arr[0] = options.tabString + selection_arr[0];
+				}
+
+				if ((before_len + selection_len + after_text.length) < check_html.length) {
+					selection_arr.push("");
+					selection_len += 2; // for the \r\n that was trimmed
+				}
+
+				before_range.text = before_arr.join("\r\n");
+				range.text = selection_arr.join("\r\n");
+
+				var new_range = document.body.createTextRange();
+				new_range.moveToElementText(o);
+
+				if (0 < before_len)	new_range.setEndPoint("StartToEnd", before_range);
+				else new_range.setEndPoint("StartToStart", before_range);
+				new_range.setEndPoint("EndToEnd", range);
+
+				new_range.select();
+
+			}
+		}
+	}
+
+// end of closure
+})(jQuery);

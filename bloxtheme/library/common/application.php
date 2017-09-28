@@ -7,14 +7,14 @@
  **/
 
 class Blox {
-	
-	
+
+
 	public static $loaded_classes = array();
-	
-	
+
+
 	/**
 	 * Let's get Blox on the road!  We'll define constants here, run the setup function and do a few other fun things.
-	 * 
+	 *
 	 * @return void
 	 **/
 	public static function init() {
@@ -23,10 +23,10 @@ class Blox {
 
 		/* Legacy element default handling */
 		$GLOBALS['blox_default_element_data'] = array();
-				
+
 		/* Define simple constants */
 		define('THEME_FRAMEWORK', 'blox');
-		define('BLOX_VERSION', '1.0.1');
+		define('BLOX_VERSION', '1.0.3');
 
 		/* Define directories */
 		define('BLOX_DIR', blox_change_to_unix_path(TEMPLATEPATH));
@@ -57,25 +57,25 @@ class Blox {
 
 		/* Handle uploads directory and cache */
 		$uploads = wp_upload_dir();
-		
-		define('BLOX_UPLOADS_DIR', blox_change_to_unix_path($uploads['basedir'] . '/blox'));		
+
+		define('BLOX_UPLOADS_DIR', blox_change_to_unix_path($uploads['basedir'] . '/blox'));
 		define('BLOX_CACHE_DIR', blox_change_to_unix_path(BLOX_UPLOADS_DIR . '/cache'));
 
 		/* Make directories if they don't exist */
 		if ( !is_dir(BLOX_UPLOADS_DIR) )
 			wp_mkdir_p(BLOX_UPLOADS_DIR);
-			
+
 		if ( !is_dir(BLOX_CACHE_DIR) )
 			wp_mkdir_p(BLOX_CACHE_DIR);
 
 		self::add_index_files_to_uploads();
-		
+
 		/* Load locale */
 		load_theme_textdomain('blox', blox_change_to_unix_path(BLOX_LIBRARY_DIR . '/languages'));
-			
+
 		/* Add support for WordPress features */
 		add_action('after_setup_theme', array(__CLASS__, 'add_theme_support'), 1);
-				
+
 		/* Setup */
 		add_action('after_setup_theme', array(__CLASS__, 'child_theme_setup'), 2);
 		add_action('after_setup_theme', array(__CLASS__, 'load_dependencies'), 3);
@@ -111,17 +111,17 @@ class Blox {
 
 	}
 
-	
+
 	/**
 	 * Loads all of the required core classes and initiates them.
-	 * 
+	 *
 	 * Dependency array setup: class (string) => init (bool)
 	 **/
 	public static function load_dependencies() {
-						
+
 		//Load route right away so we can optimize dependency loading below
-		Blox::load(array('common/route' => true));		
-						
+		Blox::load(array('common/route' => true));
+
 		//Core loading set
 		$dependencies = array(
 			'defaults/default-design-settings',
@@ -141,14 +141,14 @@ class Blox {
 			'common/feed' => true,
 			'common/compiler' => true,
 			'common/templates',
-						
-			'admin/admin-bar' => true,		
-			
+
+			'admin/admin-bar' => true,
+
 			'api/api-panel',
 
 			'updater/plugin-updater',
 			'updater/theme-updater',
-				
+
 			'blocks' => true,
 			'wrappers' => true,
 			'elements' => true,
@@ -157,18 +157,18 @@ class Blox {
 			'fonts/web-fonts-loader' => true,
 			'fonts/traditional-fonts',
 			'fonts/google-fonts',
-						
+
 			'display' => true,
 
 			'widgets' => true,
 
 			'compatibility/woocommerce/compatibility-woocommerce' => 'CompatibilityWooCommerce'
 		);
-		
+
 		//Child theme API
 		if ( BLOX_CHILD_THEME_ACTIVE === true )
 			$dependencies['api/api-child-theme'] = 'ChildThemeAPI';
-		
+
 		//Visual editor classes
 		if ( BloxRoute::is_visual_editor() || (defined('DOING_AJAX') && DOING_AJAX && strpos($_REQUEST['action'], 'blox') !== false ) )
 			$dependencies['visual-editor'] = true;
@@ -176,15 +176,15 @@ class Blox {
 		//Admin classes
 		if ( is_admin() )
 			$dependencies['admin'] = true;
-			
+
 		//Load stuff now
 		Blox::load(apply_filters('blox_dependencies', $dependencies));
-		
+
 		do_action('blox_setup');
 
 	}
-	
-	
+
+
 	/**
 	 * Tell WordPress that Blox supports its features.
 	 **/
@@ -214,22 +214,22 @@ class Blox {
 		/* Loop Standard by PluginBuddy */
 		require_once BLOX_LIBRARY_DIR . '/resources/dynamic-loop.php';
 		add_theme_support('loop-standard');
-				
+
 	}
-	
-	
+
+
 	/**
 	 **/
 	public static function child_theme_setup() {
-		
+
 		if ( !BLOX_CHILD_THEME_ACTIVE )
 			return false;
-			
+
 		do_action('blox_setup_child_theme');
-		
+
 	}
-	
-	
+
+
 	/**
 	 * This will process upgrades from one version to another.
 	 **/
@@ -256,7 +256,7 @@ class Blox {
 				return $blox_settings;
 
 			}
-			
+
 		/* If the version in the database is already up to date, then there are no upgrade functions to be ran. */
 		if ( version_compare($db_version, BLOX_VERSION, '>=') ) {
 			if ( get_option('blox_upgrading') ) {
@@ -269,7 +269,7 @@ class Blox {
 		Blox::load('maintenance/upgrades');
 
 		return BloxMaintenance::do_upgrades();
-		
+
 	}
 
 
@@ -405,94 +405,94 @@ class Blox {
 	 * Initiate the BloxUpdaterAPI class for Blox itself.
 	 **/
 	public static function initiate_updater() {
-		
+
 		$GLOBALS['blox_updater'] = new Blox_Theme_Updater(array(
 			'remote_api_url' 	=> BLOX_SITE_URL,
 			'version' 			=> BLOX_VERSION,
 			'license' 			=> blox_get_license_key('blox'),
-			'slug'				=> 'blox',
-			'item_name'			=> 'Blox',
+			'slug'				=> '',
+			'item_name'			=> 'Unlimited',
 			'author'			=> 'Blox Theme'
 		));
 
 	}
 
-	
+
 	/**
 	 * Here's our function to load classes and files when needed from the library.
 	 **/
 	public static function load($classes, $init = false) {
-		
+
 		//Build in support to either use array or a string
 		if ( !is_array($classes) ) {
 			$load[$classes] = $init;
 		} else {
 			$load = $classes;
 		}
-		
+
 		$classes_to_init = array();
-		
+
 		//Remove already loaded classes from the array
 		foreach ( Blox::$loaded_classes as $class ) {
 			unset($load[$class]);
 		}
-				
+
 		foreach ( $load as $file => $init ) {
-			
+
 			//Check if only value is used instead of both key and value pair
 			if ( is_numeric($file) ){
 				$file = $init;
 				$init = false;
-			} 
-						
+			}
+
 			//Handle anything with .php or a full path
-			if ( strpos($file, '.php') !== false ) 
+			if ( strpos($file, '.php') !== false )
 				require_once BLOX_LIBRARY_DIR . '/' . $file;
-				
+
 			//Handle main-helpers such as admin, data, etc.
 			elseif ( strpos($file, '/') === false )
 				require_once BLOX_LIBRARY_DIR . '/' . $file . '/' . $file . '.php';
-				
+
 			//Handle anything and automatically insert .php if need be
 			elseif ( strpos($file, '/') !== false )
 				require_once BLOX_LIBRARY_DIR . '/' . $file . '.php';
-				
+
 			//Add the class to the main variable so we know that it has been loaded
 			Blox::$loaded_classes[] = $file;
-			
+
 			//Set up init, if init is true, just figure out the class name from filename.  If argument is string, use that.
 			if ( $init === true ) {
-				
+
 				$class = array_reverse(explode('/', str_replace('.php', '', $file)));
-				
+
 				//Check for hyphens/underscores and CamelCase it
 				$class = str_replace(' ', '', ucwords(str_replace('-', ' ', str_replace('_', ' ', $class[0]))));
-				
+
 				$classes_to_init[] = $class;
-				
+
 			} else if ( is_string($init) ) {
-				
+
 				$classes_to_init[] = $init;
-				
+
 			}
-			
-		}	
-		
+
+		}
+
 		//Init everything after dependencies have been loaded
 		foreach($classes_to_init as $class){
-			
+
 			if ( method_exists('Blox' . $class, 'init') ) {
-				
+
 				call_user_func(array('Blox' . $class, 'init'));
-				
+
 			} else {
-				
+
 				trigger_error('Blox' . $class . '::init is not a valid method', E_USER_WARNING);
-				
+
 			}
-			
+
 		}
-		
+
 	}
 
 
@@ -509,5 +509,5 @@ class Blox {
 		return call_user_func_array('blox_post', $args);
 	}
 
-	
+
 }

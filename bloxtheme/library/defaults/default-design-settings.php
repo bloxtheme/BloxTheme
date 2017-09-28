@@ -57,14 +57,14 @@ $blox_core_default_element_data = array(
 			'color'	=> '999999'
 		)
 	),
-	
+
 	/* Structure */
 	'body' => array(
 		'properties' => array(
 			'background-color' => 'dddddd'
 		)
 	),
-	
+
 	'wrapper' => array(
 		'properties' => array(
 			'background-color' => 'ffffff',
@@ -80,7 +80,7 @@ $blox_core_default_element_data = array(
 			'margin-bottom' => '0'
 		)
 	),
-	
+
 	/* Header Block */
 	'block-header-site-title' => array(
 		'properties' => array(
@@ -94,7 +94,7 @@ $blox_core_default_element_data = array(
 			'margin-left' => '10'
 		)
 	),
-	
+
 	'block-header-site-tagline' => array(
 		'properties' => array(
 			'color' => '999999',
@@ -107,7 +107,7 @@ $blox_core_default_element_data = array(
 			'margin-left' => '10'
 		)
 	),
-	
+
 	/* Navigation Block */
 	'block-navigation' => array(
 		'properties' => array(
@@ -120,7 +120,7 @@ $blox_core_default_element_data = array(
 			'overflow' => 'visible'
 		)
 	),
-	
+
 	'block-navigation-menu-item' => array(
 		'properties' => array(
 			'text-decoration' => 'none',
@@ -144,7 +144,7 @@ $blox_core_default_element_data = array(
 			'background-color' => 'eeeeee'
 		)
 	),
-	
+
 	/* Widget Block */
 	'block-widget-area-widget' => array(
 		'properties' => array(
@@ -173,13 +173,13 @@ $blox_core_default_element_data = array(
 			'margin-bottom' => '10'
 		)
 	),
-	
+
 	'block-widget-area-widget-links' => array(
 		'properties' => array(
 			'color' => '333333'
 		)
 	),
-	
+
 	/* Content Block */
 	'block-content-entry-container' => array(
 		'properties' => array(
@@ -191,8 +191,8 @@ $blox_core_default_element_data = array(
 			'border-color' => 'efefef',
 			'padding-bottom' => '30'
 		)
-	),	
-	
+	),
+
 	'block-content-title' => array(
 		'properties' => array(
 			'font-size' => '24',
@@ -200,7 +200,7 @@ $blox_core_default_element_data = array(
 			'line-height' => '130'
 		)
 	),
-	
+
 	'block-content-archive-title' => array(
 		'properties' => array(
 			'font-size' => '24',
@@ -212,14 +212,14 @@ $blox_core_default_element_data = array(
 			'padding-bottom' => '15'
 		)
 	),
-	
+
 	'block-content-entry-meta' => array(
 		'properties' => array(
 			'line-height' => '120',
 			'color' => '818181'
 		)
 	),
-	
+
 	'block-content-entry-content' => array(
 		'properties' => array(
 			'color' => '555555',
@@ -227,21 +227,21 @@ $blox_core_default_element_data = array(
 			'line-height' => '180'
 		)
 	),
-	
+
 	'block-content-heading' => array(
 		'properties' => array(
 			'font-size' => '20',
 			'line-height' => '180'
 		)
 	),
-	
+
 	'block-content-sub-heading' => array(
 		'properties' => array(
 			'font-size' => '16',
 			'line-height' => '180'
 		)
 	),
-	
+
 	'block-content-more-link' => array(
 		'properties' => array(
 			'background-color' => 'eeeeee',
@@ -261,7 +261,7 @@ $blox_core_default_element_data = array(
 			)
 		)
 	),
-	
+
 	'block-content-loop-navigation-link' => array(
 		'properties' => array(
 			'background-color' => 'e1e1e1',
@@ -282,7 +282,7 @@ $blox_core_default_element_data = array(
 			)
 		)
 	),
-	
+
 	'block-content-post-thumbnail' => array(
 		'properties' => array(
 			'border-top-width' => '1',
@@ -297,7 +297,7 @@ $blox_core_default_element_data = array(
 			'padding-left' => '3'
 		)
 	),
-	
+
 	'block-content-comments-area-headings' => array(
 		'properties' => array(
 			'color' => '333333',
@@ -311,7 +311,7 @@ $blox_core_default_element_data = array(
 			'padding-left' => '64'
 		)
 	),
-	
+
 	'block-content-comment-author' => array(
 		'properties' => array(
 			'font-size' => '18',
@@ -325,14 +325,14 @@ $blox_core_default_element_data = array(
 			'font-size' => '14'
 		)
 	),
-	
+
 	'block-content-comment-body' => array(
 		'properties' => array(
 			'font-size' => '14',
 			'line-height' => '170'
 		)
 	),
-	
+
 	'block-content-comment-reply-link' => array(
 		'properties' => array(
 			'font-size' => '12',
@@ -391,7 +391,7 @@ $blox_core_default_element_data = array(
 			'text-align' =>'center'
 		)
 	),
-	
+
 	'block-slider-slider-paging' => array(
 		'properties' => array(
 			'position' => 'absolute',
@@ -443,7 +443,7 @@ $blox_core_default_element_data = array(
 				'line-height' => '180'
 			)
 		),
-		
+
 		'block-text-sub-heading' => array(
 			'properties' => array(
 				'font-size' => '16',
@@ -540,11 +540,11 @@ $blox_core_default_element_data = array(
 		),
 	/* End Pin Board */
 
-	
+
 	/* Footer */
 	'block-footer' => array(
 		'properties' => array(
-			'border-top-width' => '1',
+			'border-top-width' => '0',
 			'border-right-width' => '0',
 			'border-bottom-width' => '0',
 			'border-left-width' => '0',
@@ -552,31 +552,31 @@ $blox_core_default_element_data = array(
 			'border-style' => 'solid'
 		)
 	),
-	
+
 	'block-footer-copyright' => array(
 		'properties' => array(
 			'color' => '666666'
 		)
 	),
-	
+
 	'block-footer-blox-attribution' => array(
 		'properties' => array(
 			'color' => '666666'
 		)
 	),
-	
+
 	'block-footer-administration-panel' => array(
 		'properties' => array(
 			'color' => '666666'
 		)
 	),
-	
+
 	'block-footer-go-to-top' => array(
 		'properties' => array(
 			'color' => '666666'
 		)
 	),
-	
+
 	'block-footer-responsive-grid-link' => array(
 		'properties' => array(
 			'color' => '666666'

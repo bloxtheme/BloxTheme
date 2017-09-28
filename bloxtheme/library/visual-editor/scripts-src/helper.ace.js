@@ -71,7 +71,7 @@ define(['jquery', 'deps/mousetrap'], function($, mousetrap) {
 				Blox.aceEditors[id].editorSession = Blox.aceEditors[id].editor.getSession();
 
 				/* Set editor config */
-				Blox.aceEditors[id].editor.setTheme('ace/theme/textmate');
+				Blox.aceEditors[id].editor.setTheme('ace/theme/clouds');
 				Blox.aceEditors[id].editorSession.setMode('ace/mode/' + mode);
 
 				Blox.aceEditors[id].editor.setShowPrintMargin(false);

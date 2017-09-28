@@ -5,9 +5,6 @@
 	<?php if ( is_main_site() ): 	?>
 		<div class="blox-sub-title" style="text-align:center"><img src="<?php echo blox_url() . '/library/admin/images/blox-theme-logo-square-250.png'; ?>" alt=""><h4 align=center>Congratulations! You installed Blox Theme Builder. Now you're ready to start making Blox!</h4></div>
 
-		<?php if ( ! blox_get_license_key( 'blox' ) ): ?>
-
-		<?php endif; ?>
 	<?php endif; ?>
 
 	<div id="blox-getting-started-ve-link-container">
@@ -32,7 +29,7 @@
 				start.</p>
 
 			<p>If you're totally new to Blox, it's highly recommended you read our <a
-					href="http://docs.bloxtheme.com/article/95-beginners-guide-building-your-website-start-to-finish"
+					href="http://bloxtheme.com/dashboard/docs/"
 					target=_"blank">Blox Beginner's Guide</a>.</p>
 		</div>
 		<div class="blox-infobox big">
@@ -64,12 +61,12 @@
 	<div class="blox-infobox-row blox-infobox-icon-row">
 		<div class="blox-infobox blox-infobox-icon inrow">
 			<span class="dashicons dashicons-groups"></span>
-			<a class="big" href="http://support.bloxtheme.com/" target="_blank">Support</a>
+			<a class="big" href="http://bloxtheme.com/ticket-form/" target="_blank">Support</a>
 		</div>
 
 		<div class="blox-infobox blox-infobox-icon">
 			<span class="dashicons dashicons-book-alt bigfix"></span>
-			<a class="big" href="http://docs.bloxtheme.com/" target="_blank">Documentation</a>
+			<a class="big" href="http://bloxtheme.com/dashboard/docs/" target="_blank">Documentation</a>
 		</div>
 	</div>
 
@@ -80,12 +77,12 @@
 	<div class="blox-infobox-row blox-infobox-icon-row">
 		<div class="blox-infobox inrow blox-infobox-icon">
 			<span class="dashicons dashicons-welcome-widgets-menus"></span>
-			<a class="big" href="http://bloxtheme.com/extend/templates" target="_blank">Templates</a>
+			<a class="big" href="http://bloxtheme.com/extend/" target="_blank">Templates</a>
 		</div>
 
 		<div class="blox-infobox blox-infobox-icon">
 			<span class="dashicons dashicons-screenoptions"></span>
-			<a class="big" href="http://bloxtheme.com/extend/blocks" target="_blank">Blocks</a>
+			<a class="big" href="http://bloxtheme.com/extend/" target="_blank">Blocks</a>
 		</div>
 	</div>
 
